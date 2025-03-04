@@ -1,2 +1,4 @@
-# Study
-한남대학교 컴퓨터공학과 20200548 정휘빈
+Hannam University
+Department of Computer Engineering 
+2020.03 ~ 
+JeongHwiBeen 정휘빈
