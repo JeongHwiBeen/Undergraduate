@@ -1,21 +1,22 @@
+from tensorflow.keras.models import load_model
 import tensorflow as tf
-import numpy as np
+# .keras 모델 파일 로드
+model = load_model('monkeypox_classification_model2.keras')
 
-# 모델 로드
-interpreter = tf.lite.Interpreter(model_path="model.tflite")
-interpreter.allocate_tensors()
+# 첫 번째 레이어의 'batch_input_shape'를 'input_shape'로 변경
+for layer in model.layers:
+    if isinstance(layer, tf.keras.layers.Conv2D):
+        config = layer.get_config()
+        if 'batch_input_shape' in config:
+            del config['batch_input_shape']
+        layer.__init__(**config)
 
-# 입력 텐서 가져오기
-input_details = interpreter.get_input_details()
-output_details = interpreter.get_output_details()
+# 변환기 사용
+converter = tf.lite.TFLiteConverter.from_keras_model(model)
 
-# 입력 데이터 준비 (Bitmap -> ByteBuffer로 변환한 데이터와 동일하게 처리)
-input_data = np.random.rand(1, 224, 224, 3).astype(np.float32)  # 예시 데이터
+# .tflite 파일로 변환
+tflite_model = converter.convert()
 
-# 모델 실행
-interpreter.set_tensor(input_details[0]['index'], input_data)
-interpreter.invoke()
-
-# 출력 결과 확인
-output_data = interpreter.get_tensor(output_details[0]['index'])
-print("Prediction result:", output_data)
+# 파일로 저장
+with open('model.tflite', 'wb') as f:
+    f.write(tflite_model)
