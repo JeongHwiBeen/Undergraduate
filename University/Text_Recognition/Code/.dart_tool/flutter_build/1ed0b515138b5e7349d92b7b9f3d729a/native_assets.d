@@ -1,1 +1,0 @@
- C:\\flutterproject\\text_recognition\\.dart_tool\\flutter_build\\1ed0b515138b5e7349d92b7b9f3d729a\\native_assets.yaml: 
