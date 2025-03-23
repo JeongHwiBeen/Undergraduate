@@ -1,0 +1,28 @@
+R_DEF: Internal format may change without notice
+local
+attr? colorBackground
+color black
+color purple_500
+color purple_700
+color teal_200
+color teal_700
+color white
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+id cameraPreviewView
+id captureButton
+id guidelinesTextView
+id resultTextView
+id uploadButton
+id uploadedImageView
+layout activity_main
+layout activity_mpox_guidelines
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+style Base.Theme.Mpox_Detection_submit
+style Theme.Final_project
+style Theme.Mpox_Detection_submit
+styleable CustomTheme colorBackground
+xml backup_rules
+xml data_extraction_rules
